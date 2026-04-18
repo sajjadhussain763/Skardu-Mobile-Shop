@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Smartphone, Mail, Phone, MapPin, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Smartphone, Mail, Phone, MapPin, Camera, Share2, Send } from 'lucide-react';
 import { SHOP_CONFIG } from '@/lib/config';
 
 const Footer = () => {
@@ -21,13 +21,13 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a href="#" className="p-2 bg-white rounded-full shadow-sm hover:text-primary transition-colors">
-                <Facebook className="h-5 w-5" />
+                <Share2 className="h-5 w-5" />
               </a>
               <a href="#" className="p-2 bg-white rounded-full shadow-sm hover:text-primary transition-colors">
-                <Instagram className="h-5 w-5" />
+                <Camera className="h-5 w-5" />
               </a>
               <a href="#" className="p-2 bg-white rounded-full shadow-sm hover:text-primary transition-colors">
-                <Twitter className="h-5 w-5" />
+                <Send className="h-5 w-5" />
               </a>
             </div>
           </div>

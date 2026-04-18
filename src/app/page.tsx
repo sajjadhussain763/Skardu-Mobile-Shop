@@ -1,6 +1,6 @@
 import Hero from '@/components/Hero';
 import ProductCard from '@/components/ProductCard';
-import { Smartphone, Shield, Tool, Headphones, ArrowRight } from 'lucide-react';
+import { Smartphone, Shield, Wrench, Headphones, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
 // Sample Featured Products
@@ -58,7 +58,7 @@ export default function Home() {
           {[
             { icon: Smartphone, title: 'New Devices', desc: 'Latest flagships with official warranty' },
             { icon: Shield, title: 'Used Phones', desc: 'Certified pre-owned with check warranty' },
-            { icon: Tool, title: 'Repair Center', desc: 'Fast and original parts replacement' },
+            { icon: Wrench, title: 'Repair Center', desc: 'Fast and original parts replacement' },
             { icon: Headphones, title: 'Accessories', desc: 'Premium cases, chargers & pods' }
           ].map((service, i) => (
             <div key={i} className="p-8 rounded-3xl bg-secondary hover:bg-white border border-transparent hover:border-border transition-all group">

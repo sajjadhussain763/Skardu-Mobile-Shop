@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Smartphone, Tool, Shield, Zap, RotateCcw, Search, MessageCircle } from 'lucide-react';
+import { Smartphone, Wrench, Shield, Zap, RotateCcw, Search, MessageCircle } from 'lucide-react';
 import { SHOP_CONFIG } from '@/lib/config';
 
 const services = [
   {
-    icon: Tool,
+    icon: Wrench,
     title: "Expert Repair Services",
     desc: "From broken screens to battery replacements, we fix all major brands using 100% original parts.",
     features: ["Screen Replacement", "Battery Change", "Water Damage Fix", "Charging Port Repair"],
