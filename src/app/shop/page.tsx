@@ -6,12 +6,13 @@ import ProductCard from '@/components/ProductCard';
 import { cn } from '@/lib/utils';
 import axios from 'axios';
 import { IProduct } from '@/models/Product';
+import { sampleProducts } from '@/lib/sampleData';
 
 const categories = ['All', 'iPhones', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Realme', 'Vivo', 'Accessories'];
 const conditions = ['All', 'New', 'Used'];
 
 export default function ShopPage() {
-  const [products, setProducts] = useState<IProduct[]>([]);
+  const [products, setProducts] = useState<(IProduct & { _id: string })[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
@@ -30,13 +31,26 @@ export default function ShopPage() {
       if (selectedCondition !== 'All') url += `condition=${selectedCondition}&`;
       
       const res = await axios.get(url);
-      setProducts(res.data);
+      if (res.data && res.data.length > 0) {
+        setProducts(res.data);
+      } else {
+        // Fallback to sample data for demo purposes if DB is empty
+        const filteredSamples = sampleProducts.filter(p => {
+            const catMatch = selectedCategory === 'All' || p.category === selectedCategory;
+            const condMatch = selectedCondition === 'All' || p.condition === selectedCondition;
+            return catMatch && condMatch;
+        });
+        setProducts(filteredSamples);
+      }
     } catch (err) {
-      console.error(err);
+      console.error('API Error, using fallback data:', err);
+      // Use samples if API fails
+      setProducts(sampleProducts);
     } finally {
       setLoading(false);
     }
   };
+
 
   const filteredProducts = products.filter(p => 
     p.name.toLowerCase().includes(search.toLowerCase())
