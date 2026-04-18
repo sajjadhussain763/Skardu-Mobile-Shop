@@ -10,7 +10,7 @@ const featuredProducts = [
     name: 'iPhone 15 Pro Max',
     price: 450000,
     originalPrice: 480000,
-    images: ['https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=1000&auto=format&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=1000&auto=format&fit=crop'],
     category: 'iPhones',
     condition: 'New'
   },
@@ -19,7 +19,7 @@ const featuredProducts = [
     name: 'Samsung Galaxy S24 Ultra',
     price: 380000,
     originalPrice: 400000,
-    images: ['https://images.unsplash.com/photo-1707149022137-567425622129?q=80&w=1000&auto=format&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop'],
     category: 'Samsung',
     condition: 'New'
   },
@@ -28,20 +28,21 @@ const featuredProducts = [
     name: 'Google Pixel 8 Pro',
     price: 220000,
     originalPrice: 240000,
-    images: ['https://images.unsplash.com/photo-1697478028726-f86a87310508?q=80&w=1000&auto=format&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop'],
     category: 'Google',
     condition: 'Used'
   },
   {
     _id: '4',
-    name: 'AirPods Pro Gen 2',
+    name: 'Premium Earbuds',
     price: 55000,
     originalPrice: 65000,
-    images: ['https://images.unsplash.com/photo-1588423770674-f28552818216?q=80&w=1000&auto=format&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop'],
     category: 'Accessories',
     condition: 'New'
   }
 ];
+
 
 
 
