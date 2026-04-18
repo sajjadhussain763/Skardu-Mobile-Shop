@@ -12,45 +12,11 @@ const categories = ['All', 'iPhones', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 
 const conditions = ['All', 'New', 'Used'];
 
 export default function ShopPage() {
-  const [products, setProducts] = useState<(IProduct & { _id: string })[]>(sampleProducts);
-  const [loading, setLoading] = useState(false);
-
+  const [products] = useState<(IProduct & { _id: string })[]>(sampleProducts);
+  const [loading] = useState(false);
   const [search, setSearch] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All');
-  const [selectedCondition, setSelectedCondition] = useState('All');
   const [sortBy, setSortBy] = useState('latest');
 
-  useEffect(() => {
-    fetchProducts();
-  }, [selectedCategory, selectedCondition]);
-
-  const fetchProducts = async () => {
-    setLoading(true);
-    try {
-      let url = `/api/products?`;
-      if (selectedCategory !== 'All') url += `category=${selectedCategory}&`;
-      if (selectedCondition !== 'All') url += `condition=${selectedCondition}&`;
-      
-      const res = await axios.get(url);
-      if (res.data && res.data.length > 0) {
-        setProducts(res.data);
-      } else {
-        // Fallback to sample data for demo purposes if DB is empty
-        const filteredSamples = sampleProducts.filter(p => {
-            const catMatch = selectedCategory === 'All' || p.category === selectedCategory;
-            const condMatch = selectedCondition === 'All' || p.condition === selectedCondition;
-            return catMatch && condMatch;
-        });
-        setProducts(filteredSamples);
-      }
-    } catch (err) {
-      console.error('API Error, using fallback data:', err);
-      // Use samples if API fails
-      setProducts(sampleProducts);
-    } finally {
-      setLoading(false);
-    }
-  };
 
 
   const filteredProducts = products.filter(p => 
