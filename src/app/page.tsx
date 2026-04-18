@@ -10,7 +10,7 @@ const featuredProducts = [
     name: 'iPhone 15 Pro Max',
     price: 450000,
     originalPrice: 480000,
-    images: [],
+    images: ['https://images.unsplash.com/photo-1696446701796-da61225697cc?q=80&w=1000&auto=format&fit=crop'],
     category: 'iPhones',
     condition: 'New'
   },
@@ -19,16 +19,16 @@ const featuredProducts = [
     name: 'Samsung Galaxy S24 Ultra',
     price: 380000,
     originalPrice: 400000,
-    images: [],
+    images: ['https://images.unsplash.com/photo-1707149022137-567425622129?q=80&w=1000&auto=format&fit=crop'],
     category: 'Samsung',
     condition: 'New'
   },
   {
     _id: '3',
-    name: 'Pixel 8 Pro (Used)',
+    name: 'Google Pixel 8 Pro',
     price: 220000,
     originalPrice: 240000,
-    images: [],
+    images: ['https://images.unsplash.com/photo-1697478028726-f86a87310508?q=80&w=1000&auto=format&fit=crop'],
     category: 'Google',
     condition: 'Used'
   },
@@ -37,11 +37,12 @@ const featuredProducts = [
     name: 'AirPods Pro Gen 2',
     price: 55000,
     originalPrice: 65000,
-    images: [],
+    images: ['https://images.unsplash.com/photo-1588423770674-f28552818216?q=80&w=1000&auto=format&fit=crop'],
     category: 'Accessories',
     condition: 'New'
   }
 ];
+
 
 
 export default function Home() {

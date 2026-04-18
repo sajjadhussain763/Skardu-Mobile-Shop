@@ -28,26 +28,28 @@ const ProductCard = ({ product }: ProductCardProps) => {
       viewport={{ once: true }}
       className="group premium-card bg-white rounded-2xl overflow-hidden border border-border flex flex-col h-full"
     >
-      {/* Text-based Mobile Banner (Replacing Image) */}
-      <Link href={`/product/${product._id}`} className="relative aspect-square overflow-hidden bg-gradient-to-br from-secondary to-dark/5 flex items-center justify-center p-8 text-center group">
-         <div className="absolute inset-0 bg-white/40 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
-         <span className="text-2xl font-black text-dark/20 uppercase tracking-tighter leading-none select-none group-hover:scale-110 group-hover:text-primary/30 transition-all duration-700">
-            {product.name}
-         </span>
-         
-         <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
+      {/* Professional Product Image */}
+      <Link href={`/product/${product._id}`} className="relative aspect-square overflow-hidden bg-secondary">
+        <Image
+          src={product.images[0] || 'https://images.unsplash.com/photo-1616348436168-de43ad0db179?q=80&w=1000&auto=format&fit=crop'}
+          alt={product.name!}
+          fill
+          className="object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+        <div className="absolute top-4 left-4 flex flex-col gap-2">
           {product.condition === 'Used' && (
-            <span className="bg-amber-100/80 backdrop-blur text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
+            <span className="bg-amber-100/90 backdrop-blur text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
               Used
             </span>
           )}
           {product.originalPrice && product.originalPrice > product.price! && (
             <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-              SAVE {Math.round((1 - product.price! / product.originalPrice) * 100)}%
+              Save {formatPrice(product.originalPrice - product.price!)}
             </span>
           )}
         </div>
       </Link>
+
 
 
       {/* Content */}
