@@ -12,8 +12,9 @@ const categories = ['All', 'iPhones', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 
 const conditions = ['All', 'New', 'Used'];
 
 export default function ShopPage() {
-  const [products, setProducts] = useState<(IProduct & { _id: string })[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState<(IProduct & { _id: string })[]>(sampleProducts);
+  const [loading, setLoading] = useState(false);
+
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedCondition, setSelectedCondition] = useState('All');
