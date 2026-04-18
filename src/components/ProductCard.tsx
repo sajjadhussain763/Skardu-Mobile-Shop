@@ -7,23 +7,18 @@ import { ShoppingCart, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { cn, formatPrice } from '@/lib/utils';
 import { SHOP_CONFIG } from '@/lib/config';
+import { IProduct } from '@/models/Product';
 
 interface ProductCardProps {
-  product: {
-    _id: string;
-    name: string;
-    price: number;
-    originalPrice?: number;
-    images: string[];
-    condition: string;
-    category: string;
-  };
+  product: IProduct;
 }
+
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const whatsappMsg = encodeURIComponent(
-    `Hello Noor Mobile Mall, I want to buy this product: ${product.name} - Price: ${formatPrice(product.price)}`
+    `Hello Noor Mobile Mall, I want to buy this product: ${product.name!} - Price: ${formatPrice(product.price!)}`
   );
+
   const whatsappUrl = `https://wa.me/${SHOP_CONFIG.whatsapp.replace(/\D/g, '')}?text=${whatsappMsg}`;
 
   return (
@@ -47,11 +42,12 @@ const ProductCard = ({ product }: ProductCardProps) => {
               Used
             </span>
           )}
-          {product.originalPrice && product.originalPrice > product.price && (
+          {product.originalPrice && product.originalPrice > product.price! && (
             <span className="bg-red-500 text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-              Save {formatPrice(product.originalPrice - product.price)}
+              Save {formatPrice(product.originalPrice - product.price!)}
             </span>
           )}
+
         </div>
       </Link>
 
@@ -66,13 +62,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
         
         <div className="mt-auto">
           <div className="flex items-baseline gap-2 mb-4">
-            <span className="text-xl font-extrabold text-primary">{formatPrice(product.price)}</span>
-            {product.originalPrice && product.originalPrice > product.price && (
+            <span className="text-xl font-extrabold text-primary">{formatPrice(product.price!)}</span>
+            {product.originalPrice && product.originalPrice > product.price! && (
               <span className="text-sm text-muted-foreground line-through">
                 {formatPrice(product.originalPrice)}
               </span>
             )}
           </div>
+
 
           <a
             href={whatsappUrl}

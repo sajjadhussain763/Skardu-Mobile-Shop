@@ -84,8 +84,9 @@ export default function AdminProducts() {
                   </tr>
                 ))
               ) : products.length > 0 ? (
-                products.map((product: any) => (
+                products.map((product) => (
                   <tr key={product._id} className="hover:bg-secondary/20 transition-colors">
+
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 rounded-lg overflow-hidden bg-secondary">

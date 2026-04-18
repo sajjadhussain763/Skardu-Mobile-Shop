@@ -1,6 +1,7 @@
 import mongoose, { Schema, model, models } from 'mongoose';
 
 export interface IProduct {
+  _id?: string;
   name: string;
   description: string;
   price: number;
@@ -19,6 +20,7 @@ export interface IProduct {
   };
   createdAt: Date;
 }
+
 
 const productSchema = new Schema<IProduct>({
   name: { type: String, required: true },

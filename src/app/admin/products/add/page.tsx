@@ -34,16 +34,17 @@ export default function AddProduct() {
 
   const addImage = () => {
     if (imageUrl) {
-      setFormData({ ...formData, images: [...formData.images, imageUrl] });
+      setFormData({ ...formData, images: [...(formData.images || []), imageUrl] });
       setImageUrl('');
     }
   };
 
   const removeImage = (index: number) => {
-    const newImages = [...formData.images];
+    const newImages = [...(formData.images || [])];
     newImages.splice(index, 1);
     setFormData({ ...formData, images: newImages });
   };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
