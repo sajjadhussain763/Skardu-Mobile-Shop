@@ -3,7 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, Search, MoreVertical, Edit, Trash2, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
-import { formatPrice } from '@/lib/utils';
+import { formatPrice, cn } from '@/lib/utils';
+
 import axios from 'axios';
 import { IProduct } from '@/models/Product';
 

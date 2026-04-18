@@ -8,11 +8,13 @@ import { motion } from 'framer-motion';
 import { cn, formatPrice } from '@/lib/utils';
 import { SHOP_CONFIG } from '@/lib/config';
 import axios from 'axios';
+import { IProduct } from '@/models/Product';
 
 export default function ProductDetailPage() {
 
   const { id } = useParams();
-  const [product, setProduct] = useState<any>(null);
+  const [product, setProduct] = useState<(IProduct & { _id: string }) | null>(null);
+
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
 
@@ -116,14 +118,17 @@ export default function ProductDetailPage() {
 
           {product.specs && (
             <div className="grid grid-cols-2 gap-6 mb-10 bg-secondary/30 p-8 rounded-3xl border border-border">
-              {Object.entries(product.specs).map(([key, value]) => value && (
-                <div key={key}>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">{key}</p>
-                  <p className="font-bold text-dark">{value as string}</p>
-                </div>
-              ))}
+              {Object.entries(product.specs)
+                .filter(([_, value]) => !!value)
+                .map(([key, value]) => (
+                  <div key={key}>
+                    <p className="text-xs uppercase tracking-widest text-muted-foreground mb-1">{key}</p>
+                    <p className="font-bold text-dark">{value}</p>
+                  </div>
+                ))}
             </div>
           )}
+
 
           <div className="space-y-4 mb-10">
             <a

@@ -2,46 +2,69 @@ import Hero from '@/components/Hero';
 import ProductCard from '@/components/ProductCard';
 import { Smartphone, Shield, Wrench, Headphones, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import { IProduct } from '@/models/Product';
+
 
 // Sample Featured Products
-const featuredProducts = [
+const featuredProducts: (IProduct & { _id: string })[] = [
   {
     _id: '1',
     name: 'iPhone 15 Pro Max',
+    description: 'The ultimate iPhone experience with Natural Titanium finish.',
     price: 450000,
     originalPrice: 480000,
     images: ['https://images.unsplash.com/photo-1591337676887-a217a6970a8a?q=80&w=1000&auto=format&fit=crop'],
     category: 'iPhones',
-    condition: 'New'
+    condition: 'New',
+    stock: 10,
+    featured: true,
+    specs: {},
+    createdAt: new Date()
   },
   {
     _id: '2',
     name: 'Samsung Galaxy S24 Ultra',
+    description: 'The pinnacle of mobile technology with Galaxy AI.',
     price: 380000,
     originalPrice: 400000,
     images: ['https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?q=80&w=1000&auto=format&fit=crop'],
     category: 'Samsung',
-    condition: 'New'
+    condition: 'New',
+    stock: 15,
+    featured: true,
+    specs: {},
+    createdAt: new Date()
   },
   {
     _id: '3',
     name: 'Google Pixel 8 Pro',
+    description: 'State of the art camera and AI performance.',
     price: 220000,
     originalPrice: 240000,
     images: ['https://images.unsplash.com/photo-1598327105666-5b89351aff97?q=80&w=1000&auto=format&fit=crop'],
     category: 'Google',
-    condition: 'Used'
+    condition: 'Used',
+    stock: 5,
+    featured: true,
+    specs: {},
+    createdAt: new Date()
   },
   {
     _id: '4',
     name: 'Premium Earbuds',
+    description: 'High fidelity audio for your daily mobile life.',
     price: 55000,
     originalPrice: 65000,
     images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop'],
     category: 'Accessories',
-    condition: 'New'
+    condition: 'New',
+    stock: 50,
+    featured: true,
+    specs: {},
+    createdAt: new Date()
   }
 ];
+
 
 
 

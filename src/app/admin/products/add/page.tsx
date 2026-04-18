@@ -208,7 +208,7 @@ export default function AddProduct() {
                   </button>
                 </div>
                 <div className="grid grid-cols-3 gap-2">
-                  {formData.images.map((img, i) => (
+                  {(formData.images || []).map((img, i) => (
                     <div key={i} className="relative aspect-square rounded-lg overflow-hidden border border-border">
                        <img src={img} className="w-full h-full object-cover" />
                        <button 
@@ -220,7 +220,7 @@ export default function AddProduct() {
                        </button>
                     </div>
                   ))}
-                  {formData.images.length === 0 && (
+                  {(formData.images || []).length === 0 && (
                     <div className="col-span-3 py-8 border-2 border-dashed border-border rounded-xl flex flex-col items-center text-muted-foreground">
                       <ImageIcon className="h-8 w-8 mb-2" />
                       <p className="text-xs font-bold uppercase">No Images</p>
