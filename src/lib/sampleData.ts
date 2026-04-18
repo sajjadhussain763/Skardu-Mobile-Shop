@@ -1,8 +1,9 @@
 import { IProduct } from '@/models/Product';
 
 export const sampleProducts: (IProduct & { _id: string })[] = [
+  // iPhones
   {
-    _id: '1',
+    _id: 'i1',
     name: 'iPhone 15 Pro Max',
     description: 'The ultimate iPhone experience with Natural Titanium finish and A17 Pro chip.',
     price: 450000,
@@ -16,7 +17,22 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     createdAt: new Date()
   },
   {
-    _id: '2',
+    _id: 'i2',
+    name: 'iPhone 14 Pro',
+    description: 'Powerful A16 Bionic chip with Dynamic Island and 48MP camera.',
+    price: 380000,
+    originalPrice: 400000,
+    category: 'iPhones',
+    condition: 'Used',
+    images: ['https://images.unsplash.com/photo-1678685888221-cda773a3dcdb?q=80&w=1000&auto=format&fit=crop'],
+    stock: 5,
+    featured: false,
+    specs: { ram: '6GB', storage: '128GB', battery: '3200mAh', camera: '48MP Triple', display: '6.1" OLED' },
+    createdAt: new Date()
+  },
+  // Samsung
+  {
+    _id: 's1',
     name: 'Samsung Galaxy S24 Ultra',
     description: 'The peak of Android innovation with Galaxy AI and 200MP camera.',
     price: 380000,
@@ -30,7 +46,22 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     createdAt: new Date()
   },
   {
-    _id: '3',
+    _id: 's2',
+    name: 'Samsung Galaxy A54 5G',
+    description: 'Awesome camera, awesome screen, awesome battery life.',
+    price: 115000,
+    originalPrice: 125000,
+    category: 'Samsung',
+    condition: 'New',
+    images: ['https://images.unsplash.com/photo-1678911820864-e2c567c655d7?q=80&w=1000&auto=format&fit=crop'],
+    stock: 25,
+    featured: false,
+    specs: { ram: '8GB', storage: '128GB', battery: '5000mAh', camera: '50MP Triple', display: '6.4" 120Hz' },
+    createdAt: new Date()
+  },
+  // Google
+  {
+    _id: 'g1',
     name: 'Google Pixel 8 Pro',
     description: 'The smartest Pixel yet with pure Android and incredible AI camera features.',
     price: 220000,
@@ -43,8 +74,9 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     specs: { ram: '12GB', storage: '128GB', battery: '5050mAh', camera: '50MP Triple', display: '6.7" LTPO' },
     createdAt: new Date()
   },
+  // OnePlus
   {
-    _id: '4',
+    _id: 'o1',
     name: 'OnePlus 12',
     description: 'Smooth Beyond Belief. The fastest charging flagship in the market.',
     price: 185000,
@@ -57,8 +89,9 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     specs: { ram: '16GB', storage: '512GB', battery: '5400mAh', camera: '50MP Hasselblad', display: '6.8" 2K' },
     createdAt: new Date()
   },
+  // Xiaomi
   {
-    _id: '5',
+    _id: 'x1',
     name: 'Xiaomi 14 Pro',
     description: 'Leica Optics and Snapdragon 8 Gen 3 for the ultimate mobile photographer.',
     price: 165000,
@@ -71,8 +104,9 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     specs: { ram: '12GB', storage: '256GB', battery: '4880mAh', camera: '50MP Leica', display: '6.7" AMOLED' },
     createdAt: new Date()
   },
+  // Realme
   {
-    _id: '6',
+    _id: 'r1',
     name: 'Realme GT 5',
     description: 'Performance flagship with 240W ultra-fast charging capability.',
     price: 125000,
@@ -85,8 +119,9 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     specs: { ram: '16GB', storage: '512GB', battery: '4600mAh', camera: '50MP Sony', display: '6.7" 144Hz' },
     createdAt: new Date()
   },
+  // Vivo
   {
-    _id: '7',
+    _id: 'v1',
     name: 'Vivo X100 Pro',
     description: 'Zeiss imaging system integrated for cinematic mobile videography.',
     price: 155000,
@@ -99,8 +134,9 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     specs: { ram: '12GB', storage: '256GB', battery: '5000mAh', camera: '50MP Zeiss', display: '6.78" OLED' },
     createdAt: new Date()
   },
+  // Accessories
   {
-    _id: '8',
+    _id: 'acc1',
     name: 'MagSafe Silicone Case',
     description: 'Soft-touch silicone case with perfect alignment for wireless charging.',
     price: 4500,
@@ -110,6 +146,20 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     images: ['https://images.unsplash.com/photo-1541807084-5c52b6b3adef?q=80&w=1000&auto=format&fit=crop'],
     stock: 50,
     featured: true,
+    specs: { ram: '-', storage: '-', battery: '-', camera: '-', display: '-' },
+    createdAt: new Date()
+  },
+  {
+    _id: 'acc2',
+    name: 'Original 20W USB-C Adapter',
+    description: 'Fast, efficient charging at home, in the office, or on the go.',
+    price: 6500,
+    originalPrice: 7500,
+    category: 'Accessories',
+    condition: 'New',
+    images: ['https://images.unsplash.com/photo-1583860814424-d0d47ee30251?q=80&w=1000&auto=format&fit=crop'],
+    stock: 30,
+    featured: false,
     specs: { ram: '-', storage: '-', battery: '-', camera: '-', display: '-' },
     createdAt: new Date()
   }
