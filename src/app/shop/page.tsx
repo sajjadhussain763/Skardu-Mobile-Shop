@@ -76,61 +76,19 @@ export default function ShopPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-        {/* Sidebar Filters */}
-        <aside className="lg:col-span-1 space-y-10">
-          <div>
-            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Categories
-            </h3>
-            <div className="flex flex-col gap-3">
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setSelectedCategory(cat)}
-                  className={cn(
-                    "text-left px-4 py-3 rounded-xl transition-all font-medium",
-                    selectedCategory === cat ? "bg-primary text-white shadow-lg shadow-primary/20" : "hover:bg-secondary text-muted-foreground hover:text-dark"
-                  )}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
-              <SlidersHorizontal className="h-5 w-5" />
-              Condition
-            </h3>
-            <div className="flex gap-2">
-              {conditions.map((cond) => (
-                <button
-                  key={cond}
-                  onClick={() => setSelectedCondition(cond)}
-                  className={cn(
-                    "flex-1 px-4 py-3 rounded-xl transition-all font-medium border",
-                    selectedCondition === cond ? "bg-dark text-white border-dark" : "bg-white border-border text-muted-foreground hover:border-dark"
-                  )}
-                >
-                  {cond}
-                </button>
-              ))}
-            </div>
-          </div>
-        </aside>
-
+      <div className="grid grid-cols-1 gap-12">
         {/* Product Grid */}
-        <div className="lg:col-span-3">
-          <div className="flex justify-between items-center mb-8 bg-secondary/50 p-4 rounded-2xl">
-            <span className="text-sm font-medium text-muted-foreground">
-              {filteredProducts.length} Products found
-            </span>
+        <div className="lg:col-span-4">
+          <div className="flex justify-between items-center mb-8 bg-black text-white p-6 rounded-[2rem] shadow-xl">
+            <div className="flex flex-col">
+              <span className="text-xs uppercase tracking-[0.2em] text-primary font-black mb-1">Store Inventory</span>
+              <span className="text-2xl font-black">
+                {filteredProducts.length} Premium Items in Stock
+              </span>
+            </div>
             <div className="flex gap-4">
                <select 
-                className="bg-transparent text-sm font-bold outline-none cursor-pointer"
+                className="bg-white/10 backdrop-blur-md text-white text-sm font-bold outline-none cursor-pointer px-4 py-2 rounded-xl"
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
                >
@@ -142,30 +100,31 @@ export default function ShopPage() {
           </div>
 
           {loading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((i) => (
                 <div key={i} className="aspect-[4/5] bg-secondary animate-pulse rounded-2xl" />
               ))}
             </div>
           ) : filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {filteredProducts.map((product) => (
                 <ProductCard key={product._id} product={product} />
               ))}
             </div>
           ) : (
             <div className="text-center py-20 bg-secondary/20 rounded-3xl">
-              <p className="text-xl text-muted-foreground">No products found matching your criteria.</p>
+              <p className="text-xl text-muted-foreground">No products found for "{search}".</p>
               <button 
-                onClick={() => {setSelectedCategory('All'); setSelectedCondition('All'); setSearch('')}}
+                onClick={() => setSearch('')}
                 className="mt-4 text-primary font-bold hover:underline"
               >
-                Clear all filters
+                Clear search
               </button>
             </div>
           )}
         </div>
       </div>
+
     </div>
   );
 }
