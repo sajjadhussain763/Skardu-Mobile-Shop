@@ -256,7 +256,7 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     originalPrice: 350,
     category: 'Accessories',
     condition: 'New',
-    images: ['https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1000&auto=format&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1546435770-a3e426bf472b?q=80&w=1000&auto=format&fit=crop'],
     stock: 120,
     featured: false,
     specs: { ram: '-', storage: '-', battery: '-', camera: '-', display: '-' },
@@ -270,11 +270,12 @@ export const sampleProducts: (IProduct & { _id: string })[] = [
     originalPrice: 500,
     category: 'Accessories',
     condition: 'New',
-    images: ['https://images.unsplash.com/photo-1583394838336-3da0a30f401e?q=80&w=1000&auto=format&fit=crop'],
+    images: ['https://images.unsplash.com/photo-1524678606370-a47ad25cb82a?q=80&w=1000&auto=format&fit=crop'],
     stock: 100,
     featured: false,
     specs: { ram: '-', storage: '-', battery: '-', camera: '-', display: '-' },
     createdAt: new Date()
   }
+
 ];
 
