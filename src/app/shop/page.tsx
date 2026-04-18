@@ -1,0 +1,156 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { Search, Filter, SlidersHorizontal, LayoutGrid, List } from 'lucide-react';
+import ProductCard from '@/components/ProductCard';
+import { cn } from '@/lib/utils';
+import axios from 'axios';
+
+const categories = ['All', 'iPhones', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Realme', 'Vivo', 'Accessories'];
+const conditions = ['All', 'New', 'Used'];
+
+export default function ShopPage() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [selectedCondition, setSelectedCondition] = useState('All');
+  const [sortBy, setSortBy] = useState('latest');
+
+  useEffect(() => {
+    fetchProducts();
+  }, [selectedCategory, selectedCondition]);
+
+  const fetchProducts = async () => {
+    setLoading(true);
+    try {
+      let url = `/api/products?`;
+      if (selectedCategory !== 'All') url += `category=${selectedCategory}&`;
+      if (selectedCondition !== 'All') url += `condition=${selectedCondition}&`;
+      
+      const res = await axios.get(url);
+      setProducts(res.data);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredProducts = products.filter(p => 
+    p.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
+        <div>
+          <h1 className="text-4xl font-extrabold mb-2">Shop All</h1>
+          <p className="text-muted-foreground">Browse our entire collection of premium mobile devices</p>
+        </div>
+        
+        <div className="relative w-full md:w-96">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <input
+            type="text"
+            placeholder="Search products..."
+            className="w-full pl-12 pr-4 py-4 rounded-2xl bg-secondary border-none focus:ring-2 focus:ring-primary outline-none transition-all"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        {/* Sidebar Filters */}
+        <aside className="lg:col-span-1 space-y-10">
+          <div>
+            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
+              <Filter className="h-5 w-5" />
+              Categories
+            </h3>
+            <div className="flex flex-col gap-3">
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={cn(
+                    "text-left px-4 py-3 rounded-xl transition-all font-medium",
+                    selectedCategory === cat ? "bg-primary text-white shadow-lg shadow-primary/20" : "hover:bg-secondary text-muted-foreground hover:text-dark"
+                  )}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-lg mb-6 flex items-center gap-2">
+              <SlidersHorizontal className="h-5 w-5" />
+              Condition
+            </h3>
+            <div className="flex gap-2">
+              {conditions.map((cond) => (
+                <button
+                  key={cond}
+                  onClick={() => setSelectedCondition(cond)}
+                  className={cn(
+                    "flex-1 px-4 py-3 rounded-xl transition-all font-medium border",
+                    selectedCondition === cond ? "bg-dark text-white border-dark" : "bg-white border-border text-muted-foreground hover:border-dark"
+                  )}
+                >
+                  {cond}
+                </button>
+              ))}
+            </div>
+          </div>
+        </aside>
+
+        {/* Product Grid */}
+        <div className="lg:col-span-3">
+          <div className="flex justify-between items-center mb-8 bg-secondary/50 p-4 rounded-2xl">
+            <span className="text-sm font-medium text-muted-foreground">
+              {filteredProducts.length} Products found
+            </span>
+            <div className="flex gap-4">
+               <select 
+                className="bg-transparent text-sm font-bold outline-none cursor-pointer"
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+               >
+                <option value="latest">Sort by Latest</option>
+                <option value="low">Price: Low to High</option>
+                <option value="high">Price: High to Low</option>
+               </select>
+            </div>
+          </div>
+
+          {loading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
+                <div key={i} className="aspect-[4/5] bg-secondary animate-pulse rounded-2xl" />
+              ))}
+            </div>
+          ) : filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product._id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-20 bg-secondary/20 rounded-3xl">
+              <p className="text-xl text-muted-foreground">No products found matching your criteria.</p>
+              <button 
+                onClick={() => {setSelectedCategory('All'); setSelectedCondition('All'); setSearch('')}}
+                className="mt-4 text-primary font-bold hover:underline"
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
