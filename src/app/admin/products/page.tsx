@@ -5,9 +5,11 @@ import { Plus, Search, MoreVertical, Edit, Trash2, ExternalLink } from 'lucide-r
 import Link from 'next/link';
 import { formatPrice } from '@/lib/utils';
 import axios from 'axios';
+import { IProduct } from '@/models/Product';
 
 export default function AdminProducts() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<(IProduct & { _id: string })[]>([]);
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

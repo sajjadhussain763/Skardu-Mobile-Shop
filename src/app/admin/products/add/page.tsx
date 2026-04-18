@@ -5,20 +5,21 @@ import { ArrowLeft, Save, Image as ImageIcon, Plus, X } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { IProduct } from '@/models/Product';
 
 export default function AddProduct() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<Partial<IProduct>>({
     name: '',
     description: '',
-    price: '',
-    originalPrice: '',
+    price: 0,
+    originalPrice: 0,
     category: 'iPhones',
     condition: 'New',
     stock: 1,
     featured: false,
-    images: [] as string[],
+    images: [],
     specs: {
       ram: '',
       storage: '',
@@ -27,6 +28,7 @@ export default function AddProduct() {
       display: '',
     }
   });
+
 
   const [imageUrl, setImageUrl] = useState('');
 
@@ -47,14 +49,10 @@ export default function AddProduct() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post('/api/products', {
-        ...formData,
-        price: Number(formData.price),
-        originalPrice: formData.originalPrice ? Number(formData.originalPrice) : undefined,
-        stock: Number(formData.stock)
-      });
+      await axios.post('/api/products', formData);
       router.push('/admin/products');
     } catch (err) {
+
       alert('Failed to add product');
     } finally {
       setLoading(false);
@@ -168,7 +166,7 @@ export default function AddProduct() {
                     type="number"
                     className="w-full px-6 py-3 rounded-xl bg-secondary border-none"
                     value={formData.price}
-                    onChange={(e) => setFormData({ ...formData, price: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, price: Number(e.target.value) })}
                   />
                 </div>
                 <div className="space-y-2">
@@ -177,7 +175,7 @@ export default function AddProduct() {
                     type="number"
                     className="w-full px-6 py-3 rounded-xl bg-secondary border-none"
                     value={formData.originalPrice}
-                    onChange={(e) => setFormData({ ...formData, originalPrice: e.target.value })}
+                    onChange={(e) => setFormData({ ...formData, originalPrice: Number(e.target.value) })}
                   />
                 </div>
                 <div className="space-y-2">
@@ -189,6 +187,7 @@ export default function AddProduct() {
                     onChange={(e) => setFormData({ ...formData, stock: Number(e.target.value) })}
                   />
                 </div>
+
              </div>
           </div>
 

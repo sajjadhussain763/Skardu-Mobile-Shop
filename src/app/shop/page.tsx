@@ -5,12 +5,13 @@ import { Search, Filter, SlidersHorizontal, LayoutGrid, List } from 'lucide-reac
 import ProductCard from '@/components/ProductCard';
 import { cn } from '@/lib/utils';
 import axios from 'axios';
+import { IProduct } from '@/models/Product';
 
 const categories = ['All', 'iPhones', 'Samsung', 'Google', 'OnePlus', 'Xiaomi', 'Realme', 'Vivo', 'Accessories'];
 const conditions = ['All', 'New', 'Used'];
 
 export default function ShopPage() {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<IProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');

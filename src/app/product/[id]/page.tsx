@@ -5,11 +5,12 @@ import { useParams } from 'next/navigation';
 import { MessageCircle, ShieldCheck, Truck, RefreshCw, Star, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { formatPrice } from '@/lib/utils';
+import { cn, formatPrice } from '@/lib/utils';
 import { SHOP_CONFIG } from '@/lib/config';
 import axios from 'axios';
 
 export default function ProductDetailPage() {
+
   const { id } = useParams();
   const [product, setProduct] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -158,6 +159,3 @@ export default function ProductDetailPage() {
   );
 }
 
-function cn(...inputs: any[]) {
-  return inputs.filter(Boolean).join(' ');
-}
